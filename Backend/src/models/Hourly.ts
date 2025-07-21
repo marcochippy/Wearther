@@ -8,44 +8,44 @@ const hourlySchema = new Schema(
 
     temperature: {
       value: { type: Number },
-      unit: { type: String },
+      unit: { type: String }
     },
 
     realFeelTemperature: {
       value: { type: Number },
       unit: { type: String },
-      phrase: { type: String },
+      phrase: { type: String }
     },
 
     realFeelTemperatureShade: {
       value: { type: Number },
       unit: { type: String },
-      phrase: { type: String },
+      phrase: { type: String }
     },
 
     wind: {
       speed: {
         value: { type: Number },
-        unit: { type: String },
+        unit: { type: String }
       },
       direction: {
         degrees: { type: Number },
-        localized: { type: String },
-      },
+        localized: { type: String }
+      }
     },
 
     windGust: {
       speed: {
         value: { type: Number },
-        unit: { type: String },
-      },
+        unit: { type: String }
+      }
     },
 
     relativeHumidity: { type: Number },
 
     visibility: {
       value: { type: Number },
-      unit: { type: String },
+      unit: { type: String }
     },
 
     uvIndex: { type: Number },
@@ -58,34 +58,32 @@ const hourlySchema = new Schema(
 
     totalLiquid: {
       value: { type: Number },
-      unit: { type: String },
+      unit: { type: String }
     },
 
     rain: {
       value: { type: Number },
-      unit: { type: String },
+      unit: { type: String }
     },
 
     snow: {
       value: { type: Number },
-      unit: { type: String },
+      unit: { type: String }
     },
 
     ice: {
       value: { type: Number },
-      unit: { type: String },
+      unit: { type: String }
     },
 
     cloudCover: { type: Number },
 
     solarIrradiance: {
       value: { type: Number },
-      unit: { type: String },
-    },
+      unit: { type: String }
+    }
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
 export default model('Hourly', hourlySchema);

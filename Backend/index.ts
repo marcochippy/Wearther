@@ -4,7 +4,7 @@ import express, { Express } from 'express';
 import './src/db/index';
 import errorHandler from './src/middlewares/errorHandler';
 import hourlyRouter from './src/routers/hourlyRouter';
-import chatRouter from './src/routers/chatRouter';
+import clothingRouter from './src/routers/clothingRouter';
 
 const app: Express = express();
 const port = process.env.PORT || 8080;
@@ -12,7 +12,7 @@ const port = process.env.PORT || 8080;
 app.use(express.json());
 
 app.use('/hourly', hourlyRouter);
-app.use('/ai', chatRouter);
+app.use('/ai', clothingRouter);
 
 app.use(errorHandler);
 
