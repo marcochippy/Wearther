@@ -34,7 +34,11 @@ export const createClothing = async (req: Request, res: Response): Promise<void>
     await Clothing.create(polishedResponse);
     console.log('Created new Clothing data for database');
 
-    res.json('Successfully created ClothingData');
+    res.json({
+      success: true,
+      message: 'Successfully created ClothingData',
+      polishedResponse
+    });
     console.log('Successfully created ClothingData');
   } catch (error) {
     console.error('Error in createSimpleChat:', error);
