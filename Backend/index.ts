@@ -1,10 +1,10 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 import express, { Express } from 'express';
-import './src/db/index';
-import errorHandler from './src/middlewares/errorHandler';
-import hourlyRouter from './src/routers/hourlyRouter';
-import clothingRouter from './src/routers/clothingRouter';
+import '@/db/index';
+import errorHandler from '@/middlewares/errorHandler';
+import hourlyRouter from '@/routers/hourlyRouter';
+import clothingRouter from '@/routers/clothingRouter';
 import cors from 'cors';
 
 const app: Express = express();

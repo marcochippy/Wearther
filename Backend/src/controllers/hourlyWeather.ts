@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Request, Response } from 'express';
-import Hourly from '../models/Hourly';
-import { ApiData } from '../../../types/hourly';
+import Hourly from '@/models/Hourly';
+import { ApiData } from '@/../../types/hourly';
 
 const accuweatherUrl = process.env.URL_ACCUWEATHER;
 const accuweatherKey = process.env.KEY_ACCUWEATHER;
