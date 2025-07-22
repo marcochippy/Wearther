@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { GoogleGenAI } from '@google/genai';
-import Clothing from '../models/Clothing';
-import { aiPrompt } from '../helpers/aiInstruction';
-import { ClothingData, ApiResponse } from '../../../types/chat';
+import Clothing from '@/models/Clothing';
+import { aiPrompt } from '@/helpers/aiInstruction';
+import { ClothingData, ApiResponse } from '@/../../types/clothing';
 import Hourly from '../models/Hourly';
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });

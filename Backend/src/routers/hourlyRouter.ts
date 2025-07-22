@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getHourly, postHourly } from '../controllers/hourlyWeather';
+import { getHourly, postHourly } from '@/controllers/hourlyWeather';
 
 const hourlyRouter = Router();
 
