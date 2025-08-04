@@ -1,5 +1,5 @@
-// import * as dotenv from 'dotenv';
-// dotenv.config();
+import * as dotenv from 'dotenv';
+dotenv.config();
 import express, { Express } from 'express';
 import '@/db/index';
 import errorHandler from '@/middlewares/errorHandler';
