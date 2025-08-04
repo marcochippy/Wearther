@@ -15,5 +15,5 @@
     }
   },
   "include": ["**/*.ts"],
-  "exclude": ["nodemodules"]
+  "exclude": ["node_modules"]
 }
