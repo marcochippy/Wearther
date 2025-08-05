@@ -10,7 +10,7 @@ import cors from 'cors';
 const app: Express = express();
 const port = process.env.PORT || 8080;
 
-app.use(cors({ origin: process.env.SPA_ORIGIN, credentials: true }));
+// app.use(cors({ origin: process.env.SPA_ORIGIN, credentials: true }));
 app.use(express.json());
 
 app.use('/hourly', hourlyRouter);
