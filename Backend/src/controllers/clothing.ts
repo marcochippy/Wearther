@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { GoogleGenAI } from '@google/genai';
 import Clothing from '@/models/Clothing';
 import { aiPrompt } from '@/helpers/aiInstruction';
-import { ClothingData, ApiResponse } from '@/../../types/clothing';
+import { ClothingItems, ApiResponse } from '@/../../types/clothing';
 import Hourly from '../models/Hourly';
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
@@ -28,7 +28,7 @@ export const createClothing = async (req: Request, res: Response): Promise<void>
     console.log('Starting Gemini Prompt');
     const aiResponse: any = await chat.sendMessage({ message: [{ text: message }] });
     const clearedResponse: ApiResponse | any = aiResponse.text.replace('```json', '').replace('```', '').trim();
-    const polishedResponse: ClothingData = JSON.parse(clearedResponse);
+    const polishedResponse: ClothingItems = JSON.parse(clearedResponse);
 
     await Clothing.deleteMany({});
     await Clothing.create(polishedResponse);

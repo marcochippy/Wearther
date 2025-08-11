@@ -1,22 +1,44 @@
-export interface ClothingData {
+export interface ClothingItems {
   hour: number;
   items: {
-    head_area_mid_layer: object;
-    head_area_outer_layer: object;
-    face_area_face_mask: object;
-    face_area_eye_protection: object;
-    upper_body_base_layer: object;
-    upper_body_mid_layer: object;
-    upper_body_outer_layer: object;
-    upper_body_shell_layer: object;
-    lower_body_base_layer: object;
-    lower_body_mid_layer: object;
-    lower_body_outer_layer: object;
-    hands_gloves: object;
-    feet_shoes: object;
-    extras_rain_protection: object;
-    extras_warmers_misc: object;
+    head_area: {
+      mid_layer: string;
+      outer_layer: string;
+    };
+    face_area: {
+      face_mask: string;
+      eye_protection: string;
+    };
+    upper_body: {
+      base_layer: string;
+      mid_layer: string;
+      outer_layer: string;
+      shell_layer: string;
+    };
+    lower_body: {
+      base_layer: string;
+      mid_layer: string;
+      outer_layer: string;
+    };
+    hands: {
+      gloves: string;
+    };
+    feet: {
+      shoes: string;
+    };
+    extras: {
+      rain_protection: string;
+      warmers_misc: string;
+    };
   };
+}
+
+export interface ClothingData {
+  items: ClothingItems;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
 }
 
 export interface ApiResponse {

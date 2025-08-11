@@ -5,7 +5,6 @@ export const getHourly = async () => {
   try {
     const response = await fetch(`${API_URL}/hourly`);
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);
@@ -31,19 +30,21 @@ export const refreshAllData = async () => {
         'Content-Type': 'application/json'
       }
     });
-    const weatherData: any = await getWeatherData.json();
-    console.log('Got Weather data:', weatherData);
-    if (weatherData) {
-      const getClothingData = await fetch(`${API_URL}/ai`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      await getClothingData.json();
-      const data = getClothing();
-      console.log('Created Clothing Data:', data);
-    }
+    await getWeatherData.json();
+    console.log('Got Weather data, Next Clothing data');
+
+    const getClothingData = await fetch(`${API_URL}/ai`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    await getClothingData.json();
+
+    console.log('Created Clothing Data, next Results:');
+    const data = await getClothing();
+    const weatherData = await getHourly();
+    console.log('Refreshed data:', data, weatherData);
   } catch (error) {
     console.log(error);
   }
