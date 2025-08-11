@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Request, Response } from 'express';
 import Hourly from '@/models/Hourly';
-import { ApiData } from '@/../../types/hourly';
+import { DeclareApiData } from '@/../../types/hourly';
 
 const accuweatherUrl = process.env.URL_ACCUWEATHER;
 const accuweatherKey = process.env.KEY_ACCUWEATHER;
@@ -26,7 +26,7 @@ export const postHourly = async (req: Request, res: Response) => {
     await Hourly.deleteMany({});
     console.log('Cleared old data from database');
 
-    const transformedApiData = freshApiData.map((apiData: ApiData) => ({
+    const transformedApiData = freshApiData.map((apiData: DeclareApiData) => ({
       dateTime: apiData.DateTime,
       isDaylight: apiData.IsDaylight,
 
