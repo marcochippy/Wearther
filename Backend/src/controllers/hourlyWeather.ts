@@ -22,89 +22,90 @@ export const postHourly = async (req: Request, res: Response) => {
 
     const freshApiData = response.data;
     console.log(`Fetched ${freshApiData.length} hours of data from API`);
+    console.log(freshApiData);
 
     await Hourly.deleteMany({});
     console.log('Cleared old data from database');
 
-    const transformedApiData = freshApiData.map((apiData: ApiItems) => ({
-      dateTime: apiData.dateTime,
-      isDaylight: apiData.isDaylight,
+    const transformedApiData: ApiItems = freshApiData.map((apiData: any) => ({
+      dateTime: apiData.DateTime,
+      isDaylight: apiData.IsDaylight,
 
       temperature: {
-        value: apiData.temperature.value,
-        unit: apiData.temperature.unit
+        value: apiData.Temperature.Value,
+        unit: apiData.Temperature.Unit
       },
 
       realFeelTemperature: {
-        value: apiData.realFeelTemperature.value,
-        unit: apiData.realFeelTemperature.unit,
-        phrase: apiData.realFeelTemperature.phrase
+        value: apiData.RealFeelTemperature.Value,
+        unit: apiData.RealFeelTemperature.Unit,
+        phrase: apiData.RealFeelTemperature.Phrase
       },
 
       realFeelTemperatureShade: {
-        value: apiData.realFeelTemperatureShade.value,
-        unit: apiData.realFeelTemperatureShade.unit,
-        phrase: apiData.realFeelTemperatureShade.phrase
+        value: apiData.RealFeelTemperatureShade.Value,
+        unit: apiData.RealFeelTemperatureShade.Unit,
+        phrase: apiData.RealFeelTemperatureShade.Phrase
       },
 
       wind: {
         speed: {
-          value: apiData.wind.speed.value,
-          unit: apiData.wind.speed.unit
+          value: apiData.Wind.Speed.Value,
+          unit: apiData.Wind.Speed.Unit
         },
         direction: {
-          degrees: apiData.wind.direction.degrees,
-          localized: apiData.wind.direction.localized
+          degrees: apiData.Wind.Direction.Degrees,
+          localized: apiData.Wind.Direction.Localized
         }
       },
 
       windGust: {
         speed: {
-          value: apiData.windGust.speed.value,
-          unit: apiData.windGust.speed.unit
+          value: apiData.WindGust.Speed.Value,
+          unit: apiData.WindGust.Speed.Unit
         }
       },
 
-      relativeHumidity: apiData.relativeHumidity,
+      relativeHumidity: apiData.RelativeHumidity,
 
       visibility: {
-        value: apiData.visibility.value,
-        unit: apiData.visibility.unit
+        value: apiData.Visibility.Value,
+        unit: apiData.Visibility.Unit
       },
 
-      uvIndex: apiData.uvIndex,
-      uvIndexText: apiData.uvIndexText,
-      precipitationProbability: apiData.precipitationProbability,
-      thunderstormProbability: apiData.thunderstormProbability,
-      rainProbability: apiData.rainProbability,
-      snowProbability: apiData.snowProbability,
-      iceProbability: apiData.iceProbability,
+      uvIndex: apiData.UVIndex,
+      uvIndexText: apiData.UVIndexText,
+      precipitationProbability: apiData.PrecipitationProbability,
+      thunderstormProbability: apiData.ThunderstormProbability,
+      rainProbability: apiData.RainProbability,
+      snowProbability: apiData.SnowProbability,
+      iceProbability: apiData.IceProbability,
 
       totalLiquid: {
-        value: apiData.totalLiquid.value,
-        unit: apiData.totalLiquid.unit
+        value: apiData.TotalLiquid.Value,
+        unit: apiData.TotalLiquid.Unit
       },
 
       rain: {
-        value: apiData.rain.value,
-        unit: apiData.rain.unit
+        value: apiData.Rain.Value,
+        unit: apiData.Rain.Unit
       },
 
       snow: {
-        value: apiData.snow.value,
-        unit: apiData.snow.unit
+        value: apiData.Snow.Value,
+        unit: apiData.Snow.Unit
       },
 
       ice: {
-        value: apiData.ice.value,
-        unit: apiData.ice.unit
+        value: apiData.Ice.Value,
+        unit: apiData.Ice.Unit
       },
 
-      cloudCover: apiData.cloudCover,
+      cloudCover: apiData.CloudCover,
 
       solarIrradiance: {
-        value: apiData.solarIrradiance.value,
-        unit: apiData.solarIrradiance.unit
+        value: apiData.SolarIrradiance.Value,
+        unit: apiData.SolarIrradiance.Unit
       }
     }));
     await Hourly.insertMany(transformedApiData);
