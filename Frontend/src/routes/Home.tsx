@@ -1,18 +1,30 @@
 import { refreshAllData, getHourly, getClothing } from '@/utils/fetch';
-import SlideChangeHooks from '@/components/Homepage/SliderTime';
+import SliderTime from '@/components/Homepage/SliderWeather';
 import { useEffect, useState } from 'react';
 import { ApiData } from '@/../../types/hourly';
 import { ClothingData } from '@/../../types/clothing';
-// import Slider from "react-slick";
-// refreshAllData(); FULL RESET (MAKE BUTTON OR SWIPE GESTURE FOR MOBILE)
-
-// getHourly(); Get from Backend
-// getClothing(); Get from Backend
+import Context, { SlideContextValue } from '@/utils/Context';
 
 const Home = () => {
   const [weatherData, setWeatherData] = useState<ApiData[] | null>(null);
   const [clothData, setClothData] = useState<ClothingData[] | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const [oldSlide, setOldSlide] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(0); //This slide right after press for next slide
+  const [activeSlide2, setActiveSlide2] = useState(0); //This slide for change after slide
+
+  const contextValue: SlideContextValue = {
+    oldSlide,
+    setOldSlide,
+    activeSlide,
+    setActiveSlide,
+    activeSlide2,
+    setActiveSlide2,
+    weatherData,
+    clothData,
+    setLoading
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,12 +48,14 @@ const Home = () => {
   if (!Array.isArray(weatherData) || !Array.isArray(clothData)) return <p>Error: Data is not valid</p>;
 
   return (
-    <div>
-      <SlideChangeHooks weatherData={weatherData} />
-      <button onClick={refreshAllData} className="p-3 bg-red-300">
-        FULL REFRESH
-      </button>
-    </div>
+    <Context.Provider value={contextValue}>
+      <div>
+        <SliderTime />
+        <button onClick={refreshAllData} className="p-3 bg-red-300">
+          FULL REFRESH
+        </button>
+      </div>
+    </Context.Provider>
   );
 };
 

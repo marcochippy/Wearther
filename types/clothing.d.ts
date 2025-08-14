@@ -34,6 +34,7 @@ export interface ClothingItems {
 }
 
 export interface ClothingData {
+  hour: number;
   items: ClothingItems;
   _id: string;
   createdAt: string;
