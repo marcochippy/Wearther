@@ -26,16 +26,14 @@ export const createClothing = async (req: Request, res: Response): Promise<void>
     });
 
     console.log('Starting Gemini Prompt');
-    res.status(200).json('Starting Gemini Prompt');
+
     const aiResponse: any = await chat.sendMessage({ message: [{ text: message }] });
     const clearedResponse: ApiResponse | any = aiResponse.text.replace('```json', '').replace('```', '').trim();
     const polishedResponse: ClothingItems = JSON.parse(clearedResponse);
-    res.status(200).json('Cleared response');
 
     await Clothing.deleteMany({});
     await Clothing.create(polishedResponse);
     console.log('Created new Clothing data for database');
-    res.status(200).json('Created new Clothing data for database');
 
     res.json({
       success: true,
@@ -43,7 +41,6 @@ export const createClothing = async (req: Request, res: Response): Promise<void>
       polishedResponse
     });
     console.log('Successfully created ClothingData');
-    res.status(200).json('Successfully created ClothingData');
   } catch (error) {
     console.error('Error in createSimpleChat:', error);
     res.status(500).json({ error: 'An error occurred while processing your request' });
