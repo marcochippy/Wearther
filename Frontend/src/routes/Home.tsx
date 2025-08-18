@@ -1,6 +1,6 @@
 import { refreshAllData, getHourly, getClothing } from '@/utils/fetch';
-import SliderTime from '@/components/Homepage/SliderWeather';
-import { useEffect, useState } from 'react';
+import SliderWeather from '@/components/Homepage/SliderWeather';
+import { useCallback, useEffect, useState } from 'react';
 import { ApiData } from '@/../../types/hourly';
 import { ClothingData } from '@/../../types/clothing';
 import Context, { SlideContextValue } from '@/utils/Context';
@@ -26,33 +26,48 @@ const Home = () => {
     setLoading
   };
 
+  const loadAll = useCallback(async () => {
+    try {
+      const [weather, clothing] = await Promise.all([getHourly(), getClothing()]);
+      setWeatherData(weather);
+      setClothData(clothing);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   useEffect(() => {
-    const fetchData = async () => {
+    (async () => {
+      setLoading(true);
       try {
-        const [weather, clothing] = await Promise.all([getHourly(), getClothing()]);
-        setWeatherData(weather);
-        setClothData(clothing);
-        console.log(weather, clothing);
-      } catch (error) {
-        console.log(error);
+        await loadAll();
       } finally {
         setLoading(false);
       }
-    };
+    })();
+  }, [loadAll]);
 
-    fetchData();
-  }, []);
+  const handleRefresh = async () => {
+    setLoading(true);
+    try {
+      const res = await refreshAllData();
+      setWeatherData(res.weather);
+      setClothData(res.clothing);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  if (loading) return <p>LOADING</p>;
-
-  if (!Array.isArray(weatherData) || !Array.isArray(clothData)) return <p>Error: Data is not valid</p>;
+  // if (!Array.isArray(weatherData) || !Array.isArray(clothData)) return <p>Error: Data is not valid</p>;
 
   return (
     <Context.Provider value={contextValue}>
       <div>
-        <SliderTime />
-        <button onClick={refreshAllData} className="p-3 bg-red-300">
-          FULL REFRESH
+        <SliderWeather />
+        <button onClick={handleRefresh} disabled={loading} className="p-3 bg-red-300 disabled:opacity-60">
+          {loading ? 'Refreshing…' : 'FULL REFRESH'}
         </button>
       </div>
     </Context.Provider>

@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
 import Context from '@/utils/Context';
+import Avatar from './Avatar';
 
 function SliderWeather() {
   const { setOldSlide, setActiveSlide, setActiveSlide2, weatherData, clothData } = useContext(Context);
@@ -44,7 +45,7 @@ function SliderWeather() {
     // centerPadding: '60px',
     // dots: true,
     infinite: false,
-    speed: 1000,
+    speed: 300,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
@@ -79,13 +80,7 @@ function SliderWeather() {
             </div>
           ))}
         </Slider>
-        <div className="mt-4 flex place-content-center">
-          {currentCloth ? (
-            <h3 className="text-base">Hour: {currentCloth.hour}</h3>
-          ) : (
-            <h3 className="text-base opacity-70">No matching cloth for this hour</h3>
-          )}
-        </div>
+        <Avatar currentCloth={currentCloth} />
       </div>
     </div>
   );

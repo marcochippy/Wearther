@@ -24,28 +24,17 @@ export const getClothing = async () => {
 export const refreshAllData = async () => {
   try {
     console.log('Starting Big Refresh');
-    const getWeatherData = await fetch(`${API_URL}/hourly`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    await getWeatherData.json();
+    await fetch(`${API_URL}/hourly`, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
     console.log('Got Weather data, Next Clothing data');
 
-    const getClothingData = await fetch(`${API_URL}/ai`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    await getClothingData.json();
-
+    await fetch(`${API_URL}/ai`, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
     console.log('Created Clothing Data, next Results:');
-    const data = await getClothing();
-    const weatherData = await getHourly();
-    console.log('Refreshed data:', data, weatherData);
+
+    const [weather, clothing] = await Promise.all([getHourly(), getClothing()]);
+    console.log('Refreshed data:', clothing, weather);
+    return { weather, clothing };
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
