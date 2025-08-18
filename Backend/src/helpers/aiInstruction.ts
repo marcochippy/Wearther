@@ -1,4 +1,4 @@
-export const aiPrompt = `You will receive weather data for the next 12 hours. The data includes information like temperature, wind, rain and so on. Your job is to look at this data and determine for every hour, what fitting clothes should be worn for that hour. You HAVE TO check all the available date and evaluate them critically (like wind for example), we are in west germany to have a climate reference. The available slots and the only items to choose from are here, you can also leave things to none, for example sunglasses when the sun is not really shinning, but never return just "", return "none" instead!!:
+export const aiPrompt = `You will receive weather data for the next 12 hours. The data includes information like temperature, wind, rain and so on. Your job is to look at this data and determine for every hour, what fitting clothes should be worn for that hour. You HAVE TO check all the available date and evaluate them critically (like wind for example), always use critical judgment — for example, avoid sunglasses if it's heavily overcast, even if the UV index is moderate. we are in west germany to have a climate reference. The available slots and the only items to choose from are here, you can also leave things to none, for example sunglasses when the sun is not really shinning, but never return just "", return "none" instead!!:
 
 {
   wearable_slots: {
@@ -19,7 +19,7 @@ export const aiPrompt = `You will receive weather data for the next 12 hours. Th
     upper_body: {
       max_slots: 4,
       layers: {
-        base_layer: ['light_tshirt', 'heavy_tshirt'],
+        base_layer: ['tshirt'],
         mid_layer: ['sweater', 'fleece_jacket', 'hoodie', 'flannel_shirt'],
         outer_layer: ['insulated_jacket'],
         shell_layer: ['raincoat', 'windbreaker'],
