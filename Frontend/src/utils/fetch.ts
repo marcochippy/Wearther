@@ -23,18 +23,36 @@ export const getClothing = async () => {
 
 export const refreshAllData = async () => {
   try {
-    console.log('Starting Big Refresh');
-    await fetch(`${API_URL}/hourly`, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
-    console.log('Got Weather data, Next Clothing data');
+    console.log('Starting full data refresh');
 
-    await fetch(`${API_URL}/ai`, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
-    console.log('Created Clothing Data, next Results:');
+    const weatherRes = await fetch(`${API_URL}/hourly`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    if (!weatherRes.ok) {
+      throw new Error(`Weather POST failed with ${weatherRes.status}`);
+    }
+
+    console.log('Weather data posted. Next AI clothing data');
+
+    const clothingRes = await fetch(`${API_URL}/ai`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    if (!clothingRes.ok) {
+      throw new Error(`AI Clothing POST failed with ${clothingRes.status}`);
+    }
+
+    console.log('AI clothing data created. Results next');
 
     const [weather, clothing] = await Promise.all([getHourly(), getClothing()]);
-    console.log('Refreshed data:', clothing, weather);
+
+    console.log('All data refreshed:', { clothing, weather });
     return { weather, clothing };
   } catch (error) {
-    console.log(error);
+    console.error('Error in refreshAllData:', error);
     throw error;
   }
 };
