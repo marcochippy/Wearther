@@ -3,11 +3,10 @@ account_id = "5d1e8733fafc56dc67c31661af212d57"
 workers_dev = true
 compatibility_date = "2024-08-19"
 
-main = "worker.js"
+main = "worker/index.js"
 
 [site]
 bucket = "./dist"
-entry-point= "worker"
 
 [[redirects]]
 from = "/*"
