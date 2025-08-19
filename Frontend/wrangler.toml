@@ -7,3 +7,9 @@ main = "worker.js"
 
 [site]
 bucket = "./dist"
+entry-point= "worker"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
