@@ -5,6 +5,7 @@ const hourlySchema = new Schema(
   {
     dateTime: { type: String },
     isDaylight: { type: Boolean },
+    iconPhrase: { type: String },
 
     temperature: {
       value: { type: Number },
