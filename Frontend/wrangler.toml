@@ -7,8 +7,3 @@ main = "worker.js"
 
 [site]
 bucket = "./dist"
-
-[[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
