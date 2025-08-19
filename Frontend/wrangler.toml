@@ -7,3 +7,7 @@ main = "worker.js"
 
 [site]
 bucket = "./dist"
+
+routes = [
+  { pattern = "marcoczirpek.com/app/wearther*", zone_name = "marcoczirpek.com" }
+]
