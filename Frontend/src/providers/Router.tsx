@@ -14,10 +14,10 @@ const router = createBrowserRouter(
         }
       ]
     }
-  ]
-  // {
-  //   basename: '/app/wearther'
-  // }
+  ],
+  {
+    basename: '/app/wearther'
+  }
 );
 
 const Router = () => {
