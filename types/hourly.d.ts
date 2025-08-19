@@ -1,6 +1,7 @@
 export interface ApiItems {
   dateTime: string;
   isDaylight: boolean;
+  iconPhrase: string;
   temperature: {
     value: number;
     unit: string;

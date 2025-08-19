@@ -40,7 +40,7 @@ function SliderWeather() {
   }
 
   const settings = {
-    className: 'center',
+    className: 'center  h-[300px]',
     centerMode: true,
     // centerPadding: '60px',
     // dots: true,
@@ -70,12 +70,19 @@ function SliderWeather() {
         <Slider {...settings}>
           {(sortedWeatherData ?? []).map((data: any) => (
             <div key={data._id}>
-              <h3 className="flex place-content-center mx-auto h-[300px]">
+              <h3 className="flex place-content-center mx-auto">
                 {new Date(data.dateTime).toLocaleTimeString([], {
                   weekday: 'long',
                   hour: '2-digit',
                   minute: '2-digit'
                 })}
+              </h3>
+
+              <p className="flex  place-content-center">
+                {data.temperature.value}°{data.temperature.unit}
+              </p>
+              <h3 className="flex text-xs place-content-center">
+                Feels like {data.realFeelTemperature.value}°{data.realFeelTemperature.unit}
               </h3>
             </div>
           ))}

@@ -30,6 +30,7 @@ export const postHourly = async (req: Request, res: Response) => {
     const transformedApiData: ApiItems = freshApiData.map((apiData: any) => ({
       dateTime: apiData.DateTime,
       isDaylight: apiData.IsDaylight,
+      iconPhrase: apiData.IconPhrase,
 
       temperature: {
         value: apiData.Temperature.Value,
