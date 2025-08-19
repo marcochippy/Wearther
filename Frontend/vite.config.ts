@@ -10,5 +10,12 @@ export default defineConfig({
     alias: {
       '@': path.resolve('./src')
     }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        entryFileNames: '_worker.js'
+      }
+    }
   }
 });
