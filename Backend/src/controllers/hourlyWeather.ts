@@ -110,6 +110,7 @@ export const postHourly = async (req: Request, res: Response) => {
       }
     }));
     await Hourly.insertMany(transformedApiData);
+    console.log(transformedApiData);
 
     res.json({
       success: true,
