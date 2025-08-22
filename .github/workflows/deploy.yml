@@ -79,7 +79,8 @@ jobs:
 
       - name: Restart app
         run: |
-          'mkdir -p ./httpdocs/tmp && touch ./httpdocs/tmp/restart.txt'
+          mkdir -p ./httpdocs/tmp
+          touch ./httpdocs/tmp/restart.txt
 
       - name: Deploy Backend to Plesk
         uses: celleb/plesk-deployer@v1.1
