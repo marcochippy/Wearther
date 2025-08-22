@@ -21,13 +21,13 @@ const Avatar = ({ currentCloth }: AvatarProps) => {
   };
 
   return (
-    <div className="absolute left-1/2 top-30 transform -translate-x-1/2 z-10 ">
-      <div className="mt-4 flex flex-col place-content-center border h-50 w-40 pixelated">
-        <img src="/Avatar/BaseAvatar.png" alt="" className="h-50 w-40" />
+    <div className="absolute left-1/2 top-30 transform -translate-x-1/2 w-50 z-10 ">
+      <div className="mt-4 flex flex-col place-content-center pixelated">
+        <img src="/Avatar/BaseAvatar.png" alt="" className=" " />
         {allItems.map((item, index) =>
           failedImages.includes(item) ? null : (
-            <div key={index} className="absolute -left-[1px] border h-50 w-40">
-              <img src={`/Avatar/${item}.png`} alt="" className="h-50 w-40" onError={() => handleImageError(item)} />
+            <div key={index} className="absolute ">
+              <img src={`/Avatar/${item}.png`} alt="" className="w-50" onError={() => handleImageError(item)} />
             </div>
           )
         )}

@@ -1,0 +1,71 @@
+name: Deploy to Plesk
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 24.6.0
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./Frontend
+
+      - name: Build application
+        run: npm run build
+        working-directory: ./Frontend
+
+      - name: Deploy Frontend to Plesk
+        uses: celleb/plesk-deployer@v1.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_FRONTEND_KEY }}
+          ftp-username: ${{ vars.FTP_USERNAME_FRONTEND }}
+          ftp-server: ${{ vars.FTP_SERVER }}
+          files-to-copy: './Frontend/dist ./Frontend/package.json ./Frontend/package-lock.json'
+          remote-dir: './app/httpdocs/frontend'
+          node-version: 24.6.0
+          npm-install: true
+          restart: true
+          clean-remote-dir: true
+
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 24.6.0
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./Backend
+
+      - name: Build backend
+        run: npm run build
+        working-directory: ./Backend
+
+      - name: Deploy Backend to Plesk
+        uses: celleb/plesk-deployer@v1.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_BACKEND_KEY }}
+          ftp-username: ${{ vars.FTP_USERNAME_BACKEND }}
+          ftp-server: ${{ vars.FTP_SERVER }}
+          files-to-copy: './Backend/dist ./Backend/package.json ./Backend/package-lock.json'
+          remote-dir: './httpdocs/backend'
+          node-version: 24.6.0
+          npm-install: true
+          restart: true
+          clean-remote-dir: true
