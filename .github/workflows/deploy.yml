@@ -77,6 +77,11 @@ jobs:
         run: npm run serverbuild
         working-directory: ./Backend
 
+      - name: Stop Node.js app on Plesk
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER_BACKEND }}@${{ vars.FTP_SERVER }} \
+          "plesk nodejs --disable-app --path /var/www/vhosts/api.marcoczirpek.com/httpdocs"
+
       - name: Deploy Backend to Plesk
         uses: celleb/plesk-deployer@v1.1
         with:
@@ -90,3 +95,8 @@ jobs:
           npm-install: false
           restart: false
           clean-remote-dir: true
+
+        - name: Start Node.js app
+          run: |
+            ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER_BACKEND }}@${{ vars.FTP_SERVER }} \
+            "plesk nodejs --enable-app --path /var/www/vhosts/api.marcoczirpek.com/httpdocs"
