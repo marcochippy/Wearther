@@ -39,8 +39,8 @@ jobs:
           remote-dir: './app/httpdocs'
           node-version: 24.6.0
           package-manager: npm
-          npm-install: true
-          restart: false
+          npm-install: false
+          restart: true
           clean-remote-dir: true
 
   backend:
@@ -88,6 +88,6 @@ jobs:
           remote-dir: './httpdocs'
           node-version: 24.6.0
           package-manager: npm
-          npm-install: true
-          restart: false
+          npm-install: false
+          restart: true
           clean-remote-dir: true
