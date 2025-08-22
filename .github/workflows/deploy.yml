@@ -18,7 +18,7 @@ jobs:
           node-version: 24.6.0
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
         working-directory: ./Frontend
 
       - name: Create frontend .env
@@ -39,7 +39,7 @@ jobs:
           remote-dir: './app/httpdocs'
           node-version: 24.6.0
           package-manager: npm
-          npm-install: false
+          npm-install: true
           restart: false
           clean-remote-dir: true
 
@@ -55,7 +55,7 @@ jobs:
           node-version: 24.6.0
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
         working-directory: ./Backend
 
       - name: Deploy backend .env
@@ -88,6 +88,6 @@ jobs:
           remote-dir: './httpdocs'
           node-version: 24.6.0
           package-manager: npm
-          npm-install: false
+          npm-install: true
           restart: false
           clean-remote-dir: true
