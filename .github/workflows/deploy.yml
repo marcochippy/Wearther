@@ -57,16 +57,16 @@ jobs:
       - name: Deploy backend .env
         run: |
           ssh -o StrictHostKeyChecking=no ${{ vars.FTP_USERNAME_BACKEND }}@${{ vars.FTP_SERVER }} \
-          "echo 'PORT=${{ secrets.PORT }}' > ./app/httpdocs/backend/.env
-            echo 'KEY_WEATHERBIT=${{ secrets.KEY_WEATHERBIT }}' >> ./app/httpdocs/backend/.env
-            echo 'URL_WEATHERBIT=${{ secrets.URL_WEATHERBIT }}' >> ./app/httpdocs/backend/.env
-            echo 'ZIP_WEATHERBIT=${{ secrets.ZIP_WEATHERBIT }}' >> ./app/httpdocs/backend/.env
-            echo 'KEY_ACCUWEATHER=${{ secrets.KEY_ACCUWEATHER }}' >> ./app/httpdocs/backend/.env
-            echo 'URL_ACCUWEATHER=${{ secrets.URL_ACCUWEATHER }}' >> ./app/httpdocs/backend/.env
-            echo 'MONGO_URI=${{ secrets.MONGO_URI }}' >> ./app/httpdocs/backend/.env
-            echo 'GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}' >> ./app/httpdocs/backend/.env
-            echo 'SPA_ORIGIN=${{ secrets.SPA_ORIGIN }}' >> ./app/httpdocs/backend/.env
-            echo 'NODE_ENV=production' >> ./app/httpdocs/backend/.env"
+          "echo 'PORT=${{ secrets.PORT }}' > ./app/httpdocs/.env
+            echo 'KEY_WEATHERBIT=${{ secrets.KEY_WEATHERBIT }}' >> ./app/httpdocs/.env
+            echo 'URL_WEATHERBIT=${{ secrets.URL_WEATHERBIT }}' >> ./app/httpdocs/.env
+            echo 'ZIP_WEATHERBIT=${{ secrets.ZIP_WEATHERBIT }}' >> ./app/httpdocs/.env
+            echo 'KEY_ACCUWEATHER=${{ secrets.KEY_ACCUWEATHER }}' >> ./app/httpdocs/.env
+            echo 'URL_ACCUWEATHER=${{ secrets.URL_ACCUWEATHER }}' >> ./app/httpdocs/.env
+            echo 'MONGO_URI=${{ secrets.MONGO_URI }}' >> ./app/httpdocs/.env
+            echo 'GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}' >> ./app/httpdocs/.env
+            echo 'SPA_ORIGIN=${{ secrets.SPA_ORIGIN }}' >> ./app/httpdocs/.env
+            echo 'NODE_ENV=production' >> ./app/httpdocs/.env"
 
       - name: Install dependencies
         run: npm ci
