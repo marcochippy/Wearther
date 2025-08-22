@@ -60,16 +60,17 @@ jobs:
 
       - name: Deploy backend .env
         run: |
-          "echo 'PORT=${{ secrets.PORT }}' > ./httpdocs/.env
-          echo 'KEY_WEATHERBIT=${{ secrets.KEY_WEATHERBIT }}' >> ./httpdocs/.env
-          echo 'URL_WEATHERBIT=${{ secrets.URL_WEATHERBIT }}' >> ./httpdocs/.env
-          echo 'ZIP_WEATHERBIT=${{ secrets.ZIP_WEATHERBIT }}' >> ./httpdocs/.env
-          echo 'KEY_ACCUWEATHER=${{ secrets.KEY_ACCUWEATHER }}' >> ./httpdocs/.env
-          echo 'URL_ACCUWEATHER=${{ secrets.URL_ACCUWEATHER }}' >> ./httpdocs/.env
-          echo 'MONGO_URI=${{ secrets.MONGO_URI }}' >> ./httpdocs/.env
-          echo 'GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}' >> ./httpdocs/.env
-          echo 'SPA_ORIGIN=${{ secrets.SPA_ORIGIN }}' >> ./httpdocs/.env
-          echo 'NODE_ENV=production' >> ./httpdocs/.env"
+          "mkdir -p ./httpdocs/backend && \
+          echo 'PORT=${{ secrets.PORT }}' > ./httpdocs/backend/.env && \
+          echo 'KEY_WEATHERBIT=${{ secrets.KEY_WEATHERBIT }}' >> ./httpdocs/backend/.env && \
+          echo 'URL_WEATHERBIT=${{ secrets.URL_WEATHERBIT }}' >> ./httpdocs/backend/.env && \
+          echo 'ZIP_WEATHERBIT=${{ secrets.ZIP_WEATHERBIT }}' >> ./httpdocs/backend/.env && \
+          echo 'KEY_ACCUWEATHER=${{ secrets.KEY_ACCUWEATHER }}' >> ./httpdocs/backend/.env && \
+          echo 'URL_ACCUWEATHER=${{ secrets.URL_ACCUWEATHER }}' >> ./httpdocs/backend/.env && \
+          echo 'MONGO_URI=${{ secrets.MONGO_URI }}' >> ./httpdocs/backend/.env && \
+          echo 'GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}' >> ./httpdocs/backend/.env && \
+          echo 'SPA_ORIGIN=${{ secrets.SPA_ORIGIN }}' >> ./httpdocs/backend/.env && \
+          echo 'NODE_ENV=production' >> ./httpdocs/backend/.env"
 
       - name: Build backend
         run: npm run build
