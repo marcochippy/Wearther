@@ -60,8 +60,7 @@ jobs:
 
       - name: Deploy backend .env
         run: |
-          mkdir -p ./httpdocs/backend
-          cat <<EOF > ./httpdocs/backend/.env
+          cat <<EOF > ./Backend/.env
           PORT=${{ secrets.PORT }}
           KEY_WEATHERBIT=${{ secrets.KEY_WEATHERBIT }}
           URL_WEATHERBIT=${{ secrets.URL_WEATHERBIT }}
@@ -84,7 +83,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_BACKEND_KEY }}
           ftp-username: ${{ vars.FTP_USERNAME_BACKEND }}
           ftp-server: ${{ vars.FTP_SERVER }}
-          files-to-copy: './Backend/dist ./Backend/package.json ./Backend/package-lock.json ./httpdocs/backend/.env'
+          files-to-copy: './Backend/dist ./Backend/package.json ./Backend/package-lock.json ./Backend/.env'
           remote-dir: './httpdocs'
           node-version: 20
           package-manager: npm
