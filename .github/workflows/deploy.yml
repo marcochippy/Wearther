@@ -79,7 +79,6 @@ jobs:
 
       - name: Stop Node.js app on Plesk
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ vars.FTP_USERNAME_BACKEND }}@${{ vars.FTP_SERVER }} \
           "plesk nodejs --disable-app --path /var/www/vhosts/api.marcoczirpek.com/httpdocs"
 
       - name: Deploy Backend to Plesk
@@ -98,5 +97,4 @@ jobs:
 
       - name: Start Node.js app
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ vars.FTP_USERNAME_BACKEND }}@${{ vars.FTP_SERVER }} \
           "plesk nodejs --enable-app --path /var/www/vhosts/api.marcoczirpek.com/httpdocs"
