@@ -73,7 +73,7 @@ jobs:
           echo 'NODE_ENV=production' >> ./httpdocs/Backend/.env
 
       - name: Build backend
-        run: npm run build
+        run: npm run serverbuild
         working-directory: ./Backend
 
       - name: Deploy Backend to Plesk
