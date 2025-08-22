@@ -21,6 +21,10 @@ jobs:
         run: npm ci
         working-directory: ./Frontend
 
+      - name: Create frontend .env
+        run: |
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > ./Frontend/.env
+
       - name: Build application
         run: npm run build
         working-directory: ./Frontend
@@ -49,6 +53,20 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 24.6.0
+
+      - name: Deploy backend .env
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ vars.FTP_USERNAME_BACKEND }}@${{ vars.FTP_SERVER }} \
+          "echo 'PORT=${{ secrets.PORT }}' > ./app/httpdocs/backend/.env
+            echo 'KEY_WEATHERBIT=${{ secrets.KEY_WEATHERBIT }}' >> ./app/httpdocs/backend/.env
+            echo 'URL_WEATHERBIT=${{ secrets.URL_WEATHERBIT }}' >> ./app/httpdocs/backend/.env
+            echo 'ZIP_WEATHERBIT=${{ secrets.ZIP_WEATHERBIT }}' >> ./app/httpdocs/backend/.env
+            echo 'KEY_ACCUWEATHER=${{ secrets.KEY_ACCUWEATHER }}' >> ./app/httpdocs/backend/.env
+            echo 'URL_ACCUWEATHER=${{ secrets.URL_ACCUWEATHER }}' >> ./app/httpdocs/backend/.env
+            echo 'MONGO_URI=${{ secrets.MONGO_URI }}' >> ./app/httpdocs/backend/.env
+            echo 'GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}' >> ./app/httpdocs/backend/.env
+            echo 'SPA_ORIGIN=${{ secrets.SPA_ORIGIN }}' >> ./app/httpdocs/backend/.env
+            echo 'NODE_ENV=production' >> ./app/httpdocs/backend/.env"
 
       - name: Install dependencies
         run: npm ci
