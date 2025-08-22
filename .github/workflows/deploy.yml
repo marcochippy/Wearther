@@ -34,7 +34,8 @@ jobs:
           files-to-copy: './Frontend/dist ./Frontend/package.json ./Frontend/package-lock.json'
           remote-dir: './app/httpdocs'
           node-version: 24.6.0
-          npm-install: true
+          package-manager: npm
+          npm-install: false
           restart: true
           clean-remote-dir: true
 
@@ -66,6 +67,7 @@ jobs:
           files-to-copy: './Backend/dist ./Backend/package.json ./Backend/package-lock.json'
           remote-dir: './httpdocs'
           node-version: 24.6.0
-          npm-install: true
+          package-manager: npm
+          npm-install: false
           restart: true
           clean-remote-dir: true
