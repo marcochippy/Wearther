@@ -64,7 +64,7 @@ function SliderWeather() {
   const currentHour = currentWeather ? new Date(currentWeather.dateTime).getHours() : undefined;
   const currentCloth = currentHour != null ? clothByHour.get(currentHour) : undefined;
 
-  console.log(weatherData, clothData);
+  // console.log(weatherData, clothData);
 
   return (
     <div>

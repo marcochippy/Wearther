@@ -37,8 +37,7 @@ export const createClothing = async (req: Request, res: Response): Promise<void>
 
     res.json({
       success: true,
-      message: 'Successfully created ClothingData',
-      polishedResponse
+      message: 'Successfully created ClothingData'
     });
     console.log('Successfully created ClothingData');
   } catch (error) {

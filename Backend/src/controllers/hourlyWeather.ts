@@ -22,7 +22,6 @@ export const postHourly = async (req: Request, res: Response) => {
 
     const freshApiData = response.data;
     console.log(`Fetched ${freshApiData.length} hours of data from API`);
-    console.log(freshApiData);
 
     await Hourly.deleteMany({});
     console.log('Cleared old data from database');
@@ -110,12 +109,10 @@ export const postHourly = async (req: Request, res: Response) => {
       }
     }));
     await Hourly.insertMany(transformedApiData);
-    console.log(transformedApiData);
 
     res.json({
       success: true,
-      message: 'Successfully inserted new data into database',
-      transformedApiData
+      message: 'Successfully inserted new data into database'
     });
     console.log('Successfully inserted new data into database');
   } catch (error) {

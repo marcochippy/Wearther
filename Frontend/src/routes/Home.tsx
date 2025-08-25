@@ -66,9 +66,9 @@ const Home = () => {
     <Context.Provider value={contextValue}>
       <div>
         <SliderWeather />
-        <button onClick={handleRefresh} disabled={loading} className="p-3 bg-red-300 disabled:opacity-60">
+        {/* <button onClick={handleRefresh} disabled={loading} className="p-3 bg-red-300 disabled:opacity-60">
           {loading ? 'Refreshing…' : 'FULL REFRESH'}
-        </button>
+        </button> */}
       </div>
     </Context.Provider>
   );
