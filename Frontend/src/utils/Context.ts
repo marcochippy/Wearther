@@ -14,11 +14,11 @@ export type SlideContextValue = {
 
   weatherData: ApiData[] | null;
   clothData: ClothingData[] | null;
-  setLoading: Dispatch<SetStateAction<boolean>>;
+  // setLoading: Dispatch<SetStateAction<boolean>>;
 };
 
 const setterNumber: Dispatch<SetStateAction<number>> = () => {};
-const setterBoolean: Dispatch<SetStateAction<boolean>> = () => {};
+// const setterBoolean: Dispatch<SetStateAction<boolean>> = () => {};
 
 const Context = createContext<SlideContextValue>({
   oldSlide: 0,
@@ -28,8 +28,8 @@ const Context = createContext<SlideContextValue>({
   activeSlide2: 0,
   setActiveSlide2: setterNumber,
   weatherData: null,
-  clothData: null,
-  setLoading: setterBoolean
+  clothData: null
+  // setLoading: setterBoolean
 });
 
 export default Context;

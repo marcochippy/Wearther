@@ -1,4 +1,4 @@
-import { refreshAllData, getHourly, getClothing } from '@/utils/fetch';
+import { getHourly, getClothing } from '@/utils/fetch';
 import SliderWeather from '@/components/Homepage/SliderWeather';
 import { useCallback, useEffect, useState } from 'react';
 import { ApiData } from '@/../../types/hourly';
@@ -8,7 +8,7 @@ import Context, { SlideContextValue } from '@/utils/Context';
 const Home = () => {
   const [weatherData, setWeatherData] = useState<ApiData[] | null>(null);
   const [clothData, setClothData] = useState<ClothingData[] | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
 
   const [oldSlide, setOldSlide] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0); //This slide right after press for next slide
@@ -22,8 +22,7 @@ const Home = () => {
     activeSlide2,
     setActiveSlide2,
     weatherData,
-    clothData,
-    setLoading
+    clothData
   };
 
   const loadAll = useCallback(async () => {
@@ -47,18 +46,18 @@ const Home = () => {
     })();
   }, [loadAll]);
 
-  const handleRefresh = async () => {
-    setLoading(true);
-    try {
-      const res = await refreshAllData();
-      setWeatherData(res.weather);
-      setClothData(res.clothing);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const handleRefresh = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const res = await refreshAllData();
+  //     setWeatherData(res.weather);
+  //     setClothData(res.clothing);
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   // if (!Array.isArray(weatherData) || !Array.isArray(clothData)) return <p>Error: Data is not valid</p>;
 
