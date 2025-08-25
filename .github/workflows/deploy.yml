@@ -52,7 +52,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 24.6.0
+          node-version: 20
 
       - name: Install dependencies
         run: npm install
@@ -77,6 +77,11 @@ jobs:
         run: npm run serverbuild
         working-directory: ./Backend
 
+      - name: Restart app
+        run: |
+          mkdir -p ./httpdocs/tmp
+          touch ./httpdocs/tmp/restart.txt
+
       - name: Deploy Backend to Plesk
         uses: celleb/plesk-deployer@v1.1
         with:
@@ -88,10 +93,5 @@ jobs:
           node-version: 20
           package-manager: npm
           npm-install: false
-          restart: false
+          restart: true
           clean-remote-dir: true
-
-      - name: Restart app
-        run: |
-          mkdir -p ./httpdocs/tmp
-          touch ./httpdocs/tmp/restart.txt
