@@ -93,5 +93,5 @@ jobs:
           node-version: 20
           package-manager: npm
           npm-install: false
-          restart: true
+          restart: false
           clean-remote-dir: false
