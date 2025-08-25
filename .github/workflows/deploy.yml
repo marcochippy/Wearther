@@ -56,6 +56,7 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./Backend
 
       - name: Deploy backend .env
         run: |
@@ -74,6 +75,7 @@ jobs:
 
       - name: Build backend
         run: npm run serverbuild
+        working-directory: ./Backend
 
       - name: Deploy Backend to Plesk
         uses: celleb/plesk-deployer@v1.1
