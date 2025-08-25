@@ -55,7 +55,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
         working-directory: ./Backend
 
       - name: Deploy backend .env
@@ -77,11 +77,6 @@ jobs:
         run: npm run serverbuild
         working-directory: ./Backend
 
-      - name: Restart app
-        run: |
-          mkdir -p ./httpdocs/tmp
-          touch ./httpdocs/tmp/restart.txt
-
       - name: Deploy Backend to Plesk
         uses: celleb/plesk-deployer@v1.1
         with:
@@ -95,3 +90,8 @@ jobs:
           npm-install: false
           restart: false
           clean-remote-dir: true
+
+      - name: Restart app
+        run: |
+          mkdir -p ./httpdocs/tmp
+          touch ./httpdocs/tmp/restart.txt
