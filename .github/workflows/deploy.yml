@@ -94,4 +94,4 @@ jobs:
           package-manager: npm
           npm-install: false
           restart: true
-          clean-remote-dir: true
+          clean-remote-dir: false
