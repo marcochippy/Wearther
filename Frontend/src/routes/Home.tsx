@@ -22,7 +22,9 @@ const Home = () => {
     activeSlide2,
     setActiveSlide2,
     weatherData,
-    clothData
+    clothData,
+    setClothData,
+    getClothing
   };
 
   const loadAll = useCallback(async () => {
@@ -46,28 +48,10 @@ const Home = () => {
     })();
   }, [loadAll]);
 
-  // const handleRefresh = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const res = await refreshAllData();
-  //     setWeatherData(res.weather);
-  //     setClothData(res.clothing);
-  //   } catch (error) {
-  //     console.log(error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // if (!Array.isArray(weatherData) || !Array.isArray(clothData)) return <p>Error: Data is not valid</p>;
-
   return (
     <Context.Provider value={contextValue}>
       <div>
         <SliderWeather />
-        {/* <button onClick={handleRefresh} disabled={loading} className="p-3 bg-red-300 disabled:opacity-60">
-          {loading ? 'Refreshing…' : 'FULL REFRESH'}
-        </button> */}
       </div>
     </Context.Provider>
   );
