@@ -92,9 +92,6 @@ jobs:
           remote-dir: './httpdocs'
           node-version: 20
           package-manager: npm
-          npm-install: false
+          npm-install: true
           restart: false
           clean-remote-dir: true
-
-      - name: Install dependencies
-        run: npm install
