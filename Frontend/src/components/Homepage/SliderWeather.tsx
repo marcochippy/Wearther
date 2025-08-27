@@ -68,26 +68,45 @@ function SliderWeather() {
   // console.log('Available hours in clothByHour:', Array.from(clothByHour.keys()));
   // console.log('Current cloth:', currentCloth);
 
+  const dateStyling = 'text-2xl text-left mx-auto';
+
   return (
     <div>
-      <div className="slider-container p-5 m-5 bg-blue-200">
+      <div className="slider-container p-5 m-5 rounded-2xl ring-1 ring-black/30 bg-gray-300">
         <Slider {...settings}>
           {(sortedWeatherData ?? []).map((data: any) => (
-            <div key={data._id}>
-              <h3 className="flex place-content-center mx-auto">
-                {new Date(data.dateTime).toLocaleTimeString([], {
-                  weekday: 'long',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}
-              </h3>
-
-              <p className="flex  place-content-center">
-                {data.temperature.value}°{data.temperature.unit}
-              </p>
-              <h3 className="flex text-xs place-content-center">
-                Feels like {data.realFeelTemperature.value}°{data.realFeelTemperature.unit}
-              </h3>
+            <div key={data._id} className="flex">
+              <div className="border">
+                <h2 className={`${dateStyling}`}>
+                  {new Date(data.dateTime).toLocaleDateString([], {
+                    weekday: 'long'
+                  })}
+                </h2>
+                <h2 className={`${dateStyling}`}>
+                  {new Date(data.dateTime).toLocaleDateString([], {
+                    day: '2-digit',
+                    month: 'short'
+                  })}
+                  {''}.{' '}
+                  {new Date(data.dateTime).toLocaleDateString([], {
+                    year: 'numeric'
+                  })}
+                </h2>
+                <h2 className={`${dateStyling}`}>
+                  {new Date(data.dateTime).toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </h2>
+              </div>
+              <div className="border">
+                <p className="flex  place-content-center">
+                  {data.temperature.value}°{data.temperature.unit}
+                </p>
+                <h3 className="flex text-xs place-content-center">
+                  Feels like {data.realFeelTemperature.value}°{data.realFeelTemperature.unit}
+                </h3>
+              </div>
             </div>
           ))}
         </Slider>

@@ -67,11 +67,11 @@
 export const aiPrompt = `You will receive structured hourly weather data for the next 12 hours (for West Germany climate context). For each hour, pick weather-appropriate wearables from the allowed inventory below. Use critical judgment across ALL inputs (temperature, feels_like, wind, gusts, precipitation, precipitation_probability, precipitation_type, cloud_cover, UV index, humidity, snow_depth/ice, visibility). Prioritize safety and comfort.
 
 Hard rules
-- Only choose items that exist in the inventory below; never invent items.
+- Only choose items that exist in the inventory below; never invent items. 
 - Never exceed "max_slots" per body area.
 - Respect layer types; do not assign more than one item to the same layer type.
 - If no item is appropriate for a slot, return "none" (do NOT use empty strings or anything else).
-- Output must include ALL defined areas and their layer keys each hour. If a layer has no suitable item, set it to "none".
+- Output must include ALL defined areas and their layer keys each hour. If a layer has no suitable item, set it to "none". But never return a full list just with "none".
 - Use late fall/winter items (e.g., fleece_lined_beanie, winter_mittens, snow_pants, ski_mask, snow_goggles) primarily in NOV–MAR, or whenever feels_like is sufficiently cold per thresholds below.
 - Sunglasses require both adequate sunlight and usefulness; do not suggest them for heavy overcast even if UV is moderate.
 - Be aware, that the databse works with EU Time, so from 0-23 for the hours.
