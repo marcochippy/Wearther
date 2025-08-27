@@ -88,10 +88,10 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_BACKEND_KEY }}
           ftp-username: ${{ vars.FTP_USERNAME_BACKEND }}
           ftp-server: ${{ vars.FTP_SERVER }}
-          files-to-copy: './Backend/dist ./Backend/package.json ./Backend/package-lock.json ./Backend/.env '
+          files-to-copy: './Backend/dist ./Backend/package.json ./Backend/package-lock.json ./Backend/.env'
           remote-dir: './httpdocs'
           node-version: 20
           package-manager: npm
-          npm-install: true
+          npm-install: false
           restart: false
           clean-remote-dir: false
