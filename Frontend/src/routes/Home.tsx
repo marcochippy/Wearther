@@ -8,7 +8,7 @@ import Context, { SlideContextValue } from '@/utils/Context';
 const Home = () => {
   const [weatherData, setWeatherData] = useState<ApiData[] | null>(null);
   const [clothData, setClothData] = useState<ClothingData[] | null>(null);
-  const [, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const [oldSlide, setOldSlide] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0); //This slide right after press for next slide
@@ -24,7 +24,9 @@ const Home = () => {
     weatherData,
     clothData,
     setClothData,
-    getClothing
+    getClothing,
+    loading,
+    setLoading
   };
 
   const loadAll = useCallback(async () => {

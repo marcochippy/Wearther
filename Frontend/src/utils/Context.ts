@@ -17,11 +17,15 @@ export type SlideContextValue = {
   clothData: ClothingData[] | null;
   setClothData: Dispatch<SetStateAction<ClothingData[] | null>>;
   getClothing: () => Promise<ClothingData[]>;
+
+  loading: boolean;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 };
 
 const setterNumber: Dispatch<SetStateAction<number>> = () => {};
 const setterCloth: Dispatch<SetStateAction<ClothingData[] | null>> = () => {};
 const getClothingDefault = async (): Promise<ClothingData[]> => [];
+const setterBoolean: Dispatch<SetStateAction<boolean>> = () => {};
 
 const Context = createContext<SlideContextValue>({
   oldSlide: 0,
@@ -33,7 +37,9 @@ const Context = createContext<SlideContextValue>({
   weatherData: null,
   clothData: null,
   setClothData: setterCloth,
-  getClothing: getClothingDefault
+  getClothing: getClothingDefault,
+  loading: true,
+  setLoading: setterBoolean
 });
 
 export default Context;
