@@ -55,6 +55,10 @@ jobs:
         run: npm ci
         working-directory: ./Backend
 
+      - name: Install dependencies in final folder
+        run: npm install
+        working-directory: ./app/httpdocs
+
       - name: Deploy backend .env
         run: |
           cat <<EOF > ./Backend/.env
@@ -88,3 +92,9 @@ jobs:
           files-to-copy: './Backend/dist ./Backend/package.json ./Backend/package-lock.json ./Backend/.env'
           remote-dir: './app/httpdocs'
           clean-remote-dir: true
+          npm-install: false
+          restart: false
+
+      - name: Install dependencies in final folder
+        run: npm install
+        working-directory: ./app/httpdocs
