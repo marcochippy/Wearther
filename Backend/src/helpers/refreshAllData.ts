@@ -1,5 +1,5 @@
-import { postHourly, getHourly } from '@/controllers/hourlyWeather';
-import { createClothing, getClothing } from '@/controllers/clothing';
+import { postHourly } from '@/controllers/hourlyWeather';
+import { createClothing } from '@/controllers/clothing';
 
 function makeFakeRes(name: string) {
   return {
@@ -20,13 +20,13 @@ export async function refreshAllData() {
     await createClothing({} as any, makeFakeRes('createClothing') as any);
     console.log('AI clothing data created. Results next');
 
-    const [weather, clothing] = await Promise.all([
-      getHourly({} as any, makeFakeRes('getHourly') as any),
-      getClothing({} as any, makeFakeRes('getClothing') as any)
-    ]);
+    // const [weather, clothing] = await Promise.all([
+    //   getHourly({} as any, makeFakeRes('getHourly') as any),
+    //   getClothing({} as any, makeFakeRes('getClothing') as any)
+    // ]);
 
     console.log('All data refreshed:');
-    return { weather, clothing };
+    // return { weather, clothing };
   } catch (err) {
     console.error('Error in refreshAllDataBackend:', err);
     throw err;
