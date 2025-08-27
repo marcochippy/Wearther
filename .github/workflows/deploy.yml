@@ -94,4 +94,8 @@ jobs:
           package-manager: npm
           npm-install: false
           restart: false
-          clean-remote-dir: false
+          clean-remote-dir: true
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./httpdocs
