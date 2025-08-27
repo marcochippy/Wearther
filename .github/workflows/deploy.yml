@@ -6,39 +6,42 @@ on:
       - main
 
 jobs:
-  # frontend:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-  #     - name: Set up Node.js
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 20
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
 
-  #     - name: Install dependencies
-  #       run: npm ci
-  #       working-directory: ./Frontend
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./Frontend
 
-  #     - name: Create frontend .env
-  #       run: |
-  #         echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > ./Frontend/.env
+      - name: Create frontend .env
+        run: |
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > ./Frontend/.env
 
-  #     - name: Build application
-  #       run: npm run build
-  #       working-directory: ./Frontend
+      - name: Build application
+        run: npm run build
+        working-directory: ./Frontend
 
-  #     - name: Deploy Frontend to Plesk
-  #       uses: celleb/plesk-deployer@v1.1
-  #       with:
-  #         ssh-private-key: ${{ secrets.SSH_PRIVATE_FRONTEND_KEY }}
-  #         ftp-username: ${{ vars.FTP_USERNAME_FRONTEND }}
-  #         ftp-server: ${{ vars.FTP_SERVER }}
-  #         files-to-copy: './Frontend/dist ./Frontend/package.json ./Frontend/package-lock.json'
-  #         remote-dir: './app/httpdocs'
-  #         restart: false
-  #         clean-remote-dir: true
+      - name: Deploy Frontend to Plesk
+        uses: celleb/plesk-deployer@v1.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_FRONTEND_KEY }}
+          ftp-username: ${{ vars.FTP_USERNAME_FRONTEND }}
+          ftp-server: ${{ vars.FTP_SERVER }}
+          files-to-copy: './Frontend/dist ./Frontend/package.json ./Frontend/package-lock.json'
+          remote-dir: './app/httpdocs'
+          node-version: 20
+          package-manager: npm
+          npm-install: false
+          restart: false
+          clean-remote-dir: true
 
   backend:
     runs-on: ubuntu-latest
@@ -49,10 +52,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 24.6.0
+          node-version: 20
 
-      # - name: Install dependencies
-      #   run: npm ci
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./Backend
 
       - name: Deploy backend .env
         run: |
@@ -71,11 +75,12 @@ jobs:
 
       - name: Build backend
         run: npm run serverbuild
+        working-directory: ./Backend
 
-      # - name: Restart app
-      #   run: |
-      #     mkdir -p ./httpdocs/app/tmp
-      #     touch ./httpdocs/app/tmp/restart.txt
+      - name: Restart app
+        run: |
+          mkdir -p ./httpdocs/tmp
+          touch ./httpdocs/tmp/restart.txt
 
       - name: Deploy Backend to Plesk
         uses: celleb/plesk-deployer@v1.1
@@ -83,6 +88,10 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_BACKEND_KEY }}
           ftp-username: ${{ vars.FTP_USERNAME_BACKEND }}
           ftp-server: ${{ vars.FTP_SERVER }}
-          files-to-copy: './Backend/dist ./Backend/package.json ./Backend/package-lock.json ./Backend/.env'
-          remote-dir: './app/httpdocs'
-          clean-remote-dir: true
+          files-to-copy: './Backend/dist ./Backend/package.json ./Backend/package-lock.json ./Backend/.env ./Backend'
+          remote-dir: './httpdocs'
+          node-version: 20
+          package-manager: npm
+          npm-install: false
+          restart: false
+          clean-remote-dir: false
