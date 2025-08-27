@@ -10,12 +10,18 @@ function makeFakeRes(name: string) {
   };
 }
 
+function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export async function refreshAllData() {
   try {
     console.log('Starting full data refresh');
 
     await postHourly({} as any, makeFakeRes('postHourly') as any);
     console.log('Weather data posted. Next AI clothing data');
+
+    await sleep(5000);
 
     await createClothing({} as any, makeFakeRes('createClothing') as any);
     console.log('AI clothing data created. Results next');
