@@ -1,7 +1,7 @@
 import cron from 'node-cron';
 import { refreshAllData } from './refreshAllData';
 
-export const cronSchedule = cron.schedule('50 * * * *', async () => {
+export const cronSchedule = cron.schedule('0 * * * *', async () => {
   console.log('=== Cron job started ===', new Date().toISOString());
 
   try {
