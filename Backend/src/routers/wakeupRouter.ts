@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import wakeup from '@/controllers/wakeup';
+import { getWakeup, postWakeup } from '@/controllers/wakeup';
 
 const wakeupRouter = Router();
 
-wakeupRouter.post('/', wakeup);
+wakeupRouter.get('/', getWakeup).post('/', postWakeup);
 
 export default wakeupRouter;
