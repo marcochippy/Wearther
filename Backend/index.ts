@@ -7,6 +7,7 @@ import hourlyRouter from '@/routers/hourlyRouter';
 import clothingRouter from '@/routers/clothingRouter';
 import cors from 'cors';
 import { cronSchedule } from '@/helpers/cron';
+import wakeupRouter from '@/routers/wakeupRouter';
 
 const app: Express = express();
 const port = process.env.PORT || 8080;
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use('/hourly', hourlyRouter);
 app.use('/ai', clothingRouter);
+app.use('/wakeup', wakeupRouter);
 
 cronSchedule.start();
 
