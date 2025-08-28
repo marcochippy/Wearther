@@ -1,6 +1,8 @@
 export default {
   async fetch() {
-    return new Response('This Worker runs on a cron schedule.', { status: 200 });
+    return new Response('This Worker runs on a cron schedule. Check out https://wearther.marcoczirpek.com', {
+      status: 200
+    });
   },
 
   async scheduled() {

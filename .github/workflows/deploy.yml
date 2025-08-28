@@ -1,4 +1,4 @@
-name: Deploy to Plesk
+name: Deploy Wearther
 
 on:
   push:
@@ -97,7 +97,7 @@ jobs:
           clean-remote-dir: false
 
   wakeupworker:
-    name: Deploy Cloudflare Worker
+    name: Deploy Wakeup Worker to Cloudflare Worker
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
