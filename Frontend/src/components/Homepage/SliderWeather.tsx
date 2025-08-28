@@ -2,9 +2,10 @@ import { useContext, useMemo, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
 import Context from '@/utils/Context';
 import Avatar from './Avatar';
+import { HourlyForecastCard } from './HourlyForecastCard';
+import { SampleNextArrow, SamplePrevArrow } from './ForecastInfos/Arrows';
 
 function SliderWeather() {
   const { setOldSlide, setActiveSlide, setActiveSlide2, weatherData, clothData } = useContext(Context);
@@ -23,26 +24,10 @@ function SliderWeather() {
     return map;
   }, [clothData]);
 
-  function SampleNextArrow({ onClick }: any) {
-    return (
-      <div onClick={onClick} className="absolute top-1/2 right-0 z-10 cursor-pointer text-red-600">
-        <FaArrowAltCircleRight size={24} />
-      </div>
-    );
-  }
-
-  function SamplePrevArrow({ onClick }: any) {
-    return (
-      <div onClick={onClick} className="absolute top-1/2 left-0 z-10 cursor-pointer text-green-600">
-        <FaArrowAltCircleLeft size={24} />
-      </div>
-    );
-  }
-
   const settings = {
-    className: 'center  h-[300px]',
+    className: 'h-[300px]',
     centerMode: true,
-    // centerPadding: '60px',
+    centerPadding: '0px',
     // dots: true,
     infinite: false,
     speed: 300,
@@ -64,50 +49,13 @@ function SliderWeather() {
   const currentHour = currentWeather ? new Date(currentWeather.dateTime).getHours() : undefined;
   const currentCloth = currentHour != null ? clothByHour.get(currentHour) : undefined;
 
-  // console.log('Current hour:', currentHour);
-  // console.log('Available hours in clothByHour:', Array.from(clothByHour.keys()));
-  // console.log('Current cloth:', currentCloth);
-
-  const dateStyling = 'text-2xl text-left mx-auto';
-
   return (
     <div>
-      <div className="slider-container p-5 m-5 rounded-2xl ring-1 ring-black/30 bg-gray-300">
+      <h2 className="text-3xl mt-3">Hourly forecast</h2>
+      <div className="slider-container p-5 mt-2 rounded-2xl ring-1 ring-black/30 bg-gray-200">
         <Slider {...settings}>
           {(sortedWeatherData ?? []).map((data: any) => (
-            <div key={data._id} className="flex">
-              <div className="border">
-                <h2 className={`${dateStyling}`}>
-                  {new Date(data.dateTime).toLocaleDateString([], {
-                    weekday: 'long'
-                  })}
-                </h2>
-                <h2 className={`${dateStyling}`}>
-                  {new Date(data.dateTime).toLocaleDateString([], {
-                    day: '2-digit',
-                    month: 'short'
-                  })}
-                  {''}.{' '}
-                  {new Date(data.dateTime).toLocaleDateString([], {
-                    year: 'numeric'
-                  })}
-                </h2>
-                <h2 className={`${dateStyling}`}>
-                  {new Date(data.dateTime).toLocaleTimeString([], {
-                    hour: '2-digit',
-                    minute: '2-digit'
-                  })}
-                </h2>
-              </div>
-              <div className="border">
-                <p className="flex  place-content-center">
-                  {data.temperature.value}°{data.temperature.unit}
-                </p>
-                <h3 className="flex text-xs place-content-center">
-                  Feels like {data.realFeelTemperature.value}°{data.realFeelTemperature.unit}
-                </h3>
-              </div>
-            </div>
+            <HourlyForecastCard key={data._id} data={data} />
           ))}
         </Slider>
         <Avatar currentCloth={currentCloth} />

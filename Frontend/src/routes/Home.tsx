@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ApiData } from '@/../../types/hourly';
 import { ClothingData } from '@/../../types/clothing';
 import Context, { SlideContextValue } from '@/utils/Context';
+import RainNotification from '@/components/Homepage/RainNotification';
 
 const Home = () => {
   const [weatherData, setWeatherData] = useState<ApiData[] | null>(null);
@@ -49,10 +50,12 @@ const Home = () => {
       }
     })();
   }, [loadAll]);
-
+  console.log(clothData);
   return (
     <Context.Provider value={contextValue}>
       <div className="w-[100%] max-w-screen-xl mx-auto">
+        <h1 className="text-3xl mt-5 font-semibold">WEARTHER</h1>
+        <RainNotification />
         <SliderWeather />
       </div>
     </Context.Provider>

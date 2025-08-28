@@ -1,0 +1,16 @@
+@keyframes wiggle {
+  0% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(-5deg);
+  }
+}
+
+.wiggle {
+  animation: wiggle 7s infinite ease-in-out;
+  transform-origin: 50px 50px;
+}
