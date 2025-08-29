@@ -50,7 +50,7 @@ const Home = () => {
       }
     })();
   }, [loadAll]);
-  console.log(clothData);
+
   return (
     <Context.Provider value={contextValue}>
       <div className="w-[100%] max-w-screen-xl mx-auto">

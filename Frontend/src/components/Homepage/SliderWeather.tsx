@@ -6,6 +6,7 @@ import Context from '@/utils/Context';
 import Avatar from './Avatar';
 import { HourlyForecastCard } from './HourlyForecastCard';
 import { SampleNextArrow, SamplePrevArrow } from './ForecastInfos/Arrows';
+import { HourlyForecastCard2 } from './HourlyForecastCard-copy';
 
 function SliderWeather() {
   const { setOldSlide, setActiveSlide, setActiveSlide2, weatherData, clothData } = useContext(Context);
@@ -58,6 +59,7 @@ function SliderWeather() {
             <HourlyForecastCard key={data._id} data={data} />
           ))}
         </Slider>
+        <HourlyForecastCard2 data={currentWeather} />
         <Avatar currentCloth={currentCloth} />
       </div>
     </div>
