@@ -4,9 +4,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Context from '@/utils/Context';
 import Avatar from './Avatar';
-import { HourlyForecastCard } from './HourlyForecastCard';
+import { CurrentDate } from './CurrentDate';
 import { SampleNextArrow, SamplePrevArrow } from './ForecastInfos/Arrows';
-import { HourlyForecastCard2 } from './HourlyForecastCard-copy';
+import { HourlyForecastCard } from './HourlyForecastCard';
 
 function SliderWeather() {
   const { setOldSlide, setActiveSlide, setActiveSlide2, weatherData, clothData } = useContext(Context);
@@ -26,7 +26,7 @@ function SliderWeather() {
   }, [clothData]);
 
   const settings = {
-    className: 'h-[300px]',
+    className: '',
     centerMode: true,
     centerPadding: '0px',
     // dots: true,
@@ -52,14 +52,14 @@ function SliderWeather() {
 
   return (
     <div>
-      <h2 className="text-3xl mt-3">Hourly forecast</h2>
-      <div className="slider-container p-5 mt-2 rounded-2xl ring-1 ring-black/30 bg-gray-200">
+      <h2 className="text-2xl sm:text-3xl mt-3 ">Hourly forecast</h2>
+      <div className="slider-container p-2 sm:p-5 mt-2 rounded-2xl ring-1 ring-black/30 bg-gray-200">
         <Slider {...settings}>
           {(sortedWeatherData ?? []).map((data: any) => (
-            <HourlyForecastCard key={data._id} data={data} />
+            <CurrentDate key={data._id} data={data} />
           ))}
         </Slider>
-        <HourlyForecastCard2 data={currentWeather} />
+        <HourlyForecastCard data={currentWeather} />
         <Avatar currentCloth={currentCloth} />
       </div>
     </div>
