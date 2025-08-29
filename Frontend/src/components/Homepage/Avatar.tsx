@@ -22,10 +22,14 @@ const Avatar = ({ currentCloth }: AvatarProps) => {
 
   return (
     <div className=" ">
-      <div className="-mt-40 flex flex-wrap place-content-center">
+      <div className="mt-5 flex flex-wrap place-content-center">
         {allItems.map((item, index) => (
           <div key={index} className=" ">
-            <img src={`/Avatar/${item}.webp`} alt="" className="w-50 rounded-2xl border m-3" />
+            <img
+              src={`/Avatar/${item}.webp`}
+              alt=""
+              className="w-35 sm:w-40 md:w-50 rounded-2xl border m-1 sm:m-2 md:m-3"
+            />
           </div>
         ))}
       </div>
