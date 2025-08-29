@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="text-black/25  text-sm flex mx-auto w-fit">
+    <footer className="text-black/25 mb-4 text-sm flex mx-auto w-fit">
       <a target="_blank" rel="noopener noreferrer" className="hover:text-black" href="https://marcoczirpek.com">
         Made by Marco Czirpek
       </a>
