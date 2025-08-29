@@ -19,7 +19,7 @@ app.use('/hourly', hourlyRouter);
 app.use('/ai', clothingRouter);
 app.use('/wakeup', wakeupRouter);
 
-// cronSchedule.start();
+cronSchedule.start();
 
 app.use(errorHandler);
 

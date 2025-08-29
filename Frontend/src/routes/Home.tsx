@@ -54,7 +54,7 @@ const Home = () => {
   return (
     <Context.Provider value={contextValue}>
       <div className="w-[100%] max-w-screen-xl mx-auto sm:px-0 px-2">
-        <h1 className="text-3xl mt-5 font-semibold">WEARTHER</h1>
+        <h1 className="text-3xl mt-3 sm:mt-5 font-semibold">WEARTHER</h1>
         <RainNotification />
         <SliderWeather />
       </div>
