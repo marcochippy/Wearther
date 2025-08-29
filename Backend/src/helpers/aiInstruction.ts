@@ -32,7 +32,7 @@ Rain/snow/ground:
 
 Sun/UV/overcast:
 - Sunglasses only if uv_index ≥ 3 AND cloud_cover_pct ≤ 60 AND visibility_km is not poor.
-- Bucket_hat if uv_index ≥ 5 AND cloud_cover_pct ≤ 40 AND wind_m_s < 9 AND temp_c ≥ 15.
+- Bucket_hat only if uv_index ≥ 5 AND cloud_cover_pct ≤ 40 AND wind_m_s < 9 AND temp_c ≥ 15.
 - Snow_goggles only for blowing snow (precip_type = snow AND (wind_m_s ≥ 10 OR gust_m_s ≥ 14)); otherwise "none".
 
 Seasonality (months):

@@ -23,7 +23,12 @@ export const Thermometer: React.FC<ThermometerProps> = ({ temperature, min = -10
   };
 
   return (
-    <svg viewBox="0 0 100 300" width="50" height="100" className="h-20 sm:h-[100px] -mr-2 -mt-2 sm:-mt-1">
+    <svg
+      viewBox="0 0 100 300"
+      width="50"
+      height="100"
+      className="h-20 sm:h-[100px] -ml-2 -mr-1 sm:ml-0 sm:mr-1 -mt-2 sm:-mt-1"
+    >
       {/* Outer tube */}
       <rect x="40" y="50" width="20" height="200" rx="10" ry="10" fill="#ccc" stroke="#333" strokeWidth="0" />
 

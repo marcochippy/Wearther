@@ -53,7 +53,7 @@ function SliderWeather() {
   return (
     <div>
       <h2 className="text-2xl sm:text-3xl mt-3 ">Hourly forecast</h2>
-      <div className="slider-container p-2 sm:p-5 mt-2 rounded-2xl ring-1 ring-black/30 bg-gray-200">
+      <div className="slider-container p-2 sm:p-5 mt-2 mb-2 rounded-2xl ring-1 ring-black/30 bg-gray-200">
         <Slider {...settings}>
           {(sortedWeatherData ?? []).map((data: any) => (
             <CurrentDate key={data._id} data={data} />
