@@ -24,8 +24,6 @@ function SliderWeather() {
     return hourlyData;
   }, [weatherData]);
 
-  console.log(slicedWeatherData);
-
   const sortedWeatherData = useMemo(
     () => [...slicedWeatherData].sort((a, b) => new Date(a.time * 1000).getTime() - new Date(b.time * 1000).getTime()),
     [slicedWeatherData]
