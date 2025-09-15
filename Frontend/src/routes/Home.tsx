@@ -1,7 +1,7 @@
-import { getHourly, getClothing } from '@/utils/fetch';
+import { getWeather, getClothing } from '@/utils/fetch';
 import SliderWeather from '@/components/Homepage/SliderWeather';
 import { useCallback, useEffect, useState } from 'react';
-import { ApiData } from '@/../../types/hourly';
+import { ApiData } from '@/../../types/weather';
 import { ClothingData } from '@/../../types/clothing';
 import Context, { SlideContextValue } from '@/utils/Context';
 import RainNotification from '@/components/Homepage/RainNotification';
@@ -32,7 +32,7 @@ const Home = () => {
 
   const loadAll = useCallback(async () => {
     try {
-      const [weather, clothing] = await Promise.all([getHourly(), getClothing()]);
+      const [weather, clothing] = await Promise.all([getWeather(), getClothing()]);
       setWeatherData(weather);
       setClothData(clothing);
     } catch (error) {

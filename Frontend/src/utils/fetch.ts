@@ -1,9 +1,9 @@
 const API_URL = import.meta.env.VITE_API_URL;
 if (!API_URL) throw new Error('API URL is required, are you missing a .env file?');
 
-export const getHourly = async () => {
+export const getWeather = async () => {
   try {
-    const response = await fetch(`${API_URL}/hourly`);
+    const response = await fetch(`${API_URL}/weather`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -25,7 +25,7 @@ export const refreshAllData = async () => {
   try {
     console.log('Starting full data refresh');
 
-    const weatherRes = await fetch(`${API_URL}/hourly`, {
+    const weatherRes = await fetch(`${API_URL}/weather`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
     });
@@ -47,7 +47,7 @@ export const refreshAllData = async () => {
 
     console.log('AI clothing data created. Results next');
 
-    const [weather, clothing] = await Promise.all([getHourly(), getClothing()]);
+    const [weather, clothing] = await Promise.all([getWeather(), getClothing()]);
 
     console.log('All data refreshed:', { clothing, weather });
     return { weather, clothing };

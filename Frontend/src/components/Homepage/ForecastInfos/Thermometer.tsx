@@ -4,7 +4,7 @@ interface ThermometerProps {
   max?: number; // Maximum expected temperature
 }
 
-export const Thermometer: React.FC<ThermometerProps> = ({ temperature, min = -10, max = 40 }) => {
+export const Thermometer: React.FC<ThermometerProps> = ({ temperature, min = -10, max = 35 }) => {
   const clamp = (val: number, min: number, max: number) => Math.min(Math.max(val, min), max);
 
   const height = 200;

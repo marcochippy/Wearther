@@ -7,7 +7,8 @@ type CloudCoverProps = {
 const clamp = (n: number, a = 0, b = 100) => Math.min(b, Math.max(a, n));
 
 const CloudCover: React.FC<CloudCoverProps> = ({ cloud }) => {
-  const pct = clamp(Number.isFinite(cloud) ? cloud : 0);
+  const cloudNumber = Math.round(cloud * 100);
+  const pct = clamp(Number.isFinite(cloudNumber) ? cloudNumber : 0);
 
   const sky = `linear-gradient(to top,
   hsl(210, 80%, ${90 - pct * 0.24}%),

@@ -3,7 +3,7 @@ dotenv.config();
 import express, { Express } from 'express';
 import '@/db/index';
 import errorHandler from '@/middlewares/errorHandler';
-import hourlyRouter from '@/routers/hourlyRouter';
+import weatherRouter from '@/routers/weatherRouter';
 import clothingRouter from '@/routers/clothingRouter';
 import cors from 'cors';
 import { cronSchedule } from '@/helpers/cron';
@@ -15,7 +15,7 @@ const port = process.env.PORT || 8080;
 app.use(cors({ origin: process.env.SPA_ORIGIN, credentials: true }));
 app.use(express.json());
 
-app.use('/hourly', hourlyRouter);
+app.use('/weather', weatherRouter);
 app.use('/ai', clothingRouter);
 app.use('/wakeup', wakeupRouter);
 
