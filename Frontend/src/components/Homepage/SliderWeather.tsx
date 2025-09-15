@@ -12,7 +12,6 @@ function SliderWeather() {
   const { setOldSlide, setActiveSlide, setActiveSlide2, weatherData, clothData } = useContext(Context);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Extract and slice hourly data to only include first 12 hourly items
   const slicedWeatherData = useMemo(() => {
     if (!weatherData || !weatherData.length) return [];
 
@@ -62,8 +61,8 @@ function SliderWeather() {
   };
 
   const currentWeather = sortedWeatherData[currentIndex];
-  const currentHour = currentWeather ? new Date(currentWeather.time * 1000).getHours() : undefined;
-  const currentCloth = currentHour != null ? clothByHour.get(currentHour) : undefined;
+  const currentTimestamp = currentWeather?.time;
+  const currentCloth = currentTimestamp != null ? clothByHour.get(currentTimestamp) : undefined;
 
   return (
     <div>

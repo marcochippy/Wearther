@@ -8,9 +8,12 @@ Hard rules
 - Output must include ALL defined areas.
 - Use late fall/winter items (e.g., fleece_lined_beanie, winter_mittens, snow_pants, ski_mask, snow_goggles) primarily in NOV-MAR.
 - Dont use the bucket hat in windy condition, rather just for sunny conditions.
-- Be aware, that the databse works with EU Time, so from 0-23 for the hours.
 
-
+Rules for Rain:
+- Do not rely only on "precipType".
+- Use "precipProbability" (chance of precipitation, 0-1) and "precipIntensity" (mm/hour).
+Umbrella recommended if precipProbability >= 0.3 AND precipIntensity >= 0.25.
+Otherwise no umbrella needed.
 
 Apply these rules consistently. Here is the inventory of items:
 
@@ -72,7 +75,7 @@ Apply these rules consistently. Here is the inventory of items:
 The response should look like this:
 {
     {
-    "hour": number (check the Unix time and assign EU Hour from: 0-23),
+    "hour": number (use the Unix time),
     "items": {all available slots for that hour in an object}
     },
     {and so on},

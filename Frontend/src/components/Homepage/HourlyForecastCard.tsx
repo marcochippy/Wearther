@@ -13,7 +13,7 @@ export const HourlyForecastCard = ({ data }: { data: any }) => {
       </div>
     );
   }
-  console.log(data);
+
   return (
     <div className="">
       <div className="mt-2 sm:mt-5 w-[95%] sm:w-fit flex flex-col sm:flex-row gap-3 sm:gap-15 mx-auto">

@@ -8,7 +8,7 @@ import { WeatherRoot } from '../../../types/weather';
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-const model = 'gemini-2.5-flash';
+const model = 'gemini-2.5-pro';
 const systemInstruction = `${aiPrompt}`;
 
 export const createClothing = async (req: Request, res: Response): Promise<void> => {
