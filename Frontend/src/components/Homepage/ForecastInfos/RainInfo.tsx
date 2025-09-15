@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react';
 
-type RainInfoProps = { rain: number }; // 0–100
+type RainInfoProps = { rain: any };
 const clamp = (n: number, a = 0, b = 100) => Math.min(b, Math.max(a, n));
 
 const RainInfo: React.FC<RainInfoProps> = ({ rain }) => {
-  const pct = clamp(Number.isFinite(rain) ? rain : 0);
+  const rainNumber = Math.round(rain.precipProbability * 100);
+  const pct = clamp(Number.isFinite(rainNumber) ? rainNumber : 0);
 
   // Droplets scale with intensity (0..60)
   const dropCount = pct <= 50 ? 0 : Math.round(((pct - 50) / 50) * 80);
@@ -59,7 +60,7 @@ const RainInfo: React.FC<RainInfoProps> = ({ rain }) => {
           low ? 'inset-0 flex flex-col items-center justify-center' : 'top-2 left-1/2 -translate-x-1/2'
         }`}
       >
-        <p className="text-lg sm:text-xl font-bold leading-tight">Rain</p>
+        <p className="text-lg sm:text-xl font-bold leading-tight capitalize">{rain.precipType}</p>
         <p className="text-md">{pct}%</p>
       </div>
 

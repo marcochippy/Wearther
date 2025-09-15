@@ -12,9 +12,24 @@ function SliderWeather() {
   const { setOldSlide, setActiveSlide, setActiveSlide2, weatherData, clothData } = useContext(Context);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Extract and slice hourly data to only include first 12 hourly items
+  const slicedWeatherData = useMemo(() => {
+    if (!weatherData || !weatherData.length) return [];
+
+    const hourlyData = [];
+    for (const weather of weatherData) {
+      if (weather?.hourly?.data) {
+        hourlyData.push(...weather.hourly.data.slice(0, 12));
+      }
+    }
+    return hourlyData;
+  }, [weatherData]);
+
+  console.log(slicedWeatherData);
+
   const sortedWeatherData = useMemo(
-    () => [...(weatherData ?? [])].sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()),
-    [weatherData]
+    () => [...slicedWeatherData].sort((a, b) => new Date(a.time * 1000).getTime() - new Date(b.time * 1000).getTime()),
+    [slicedWeatherData]
   );
 
   const clothByHour = useMemo(() => {
@@ -47,7 +62,7 @@ function SliderWeather() {
   };
 
   const currentWeather = sortedWeatherData[currentIndex];
-  const currentHour = currentWeather ? new Date(currentWeather.dateTime).getHours() : undefined;
+  const currentHour = currentWeather ? new Date(currentWeather.time * 1000).getHours() : undefined;
   const currentCloth = currentHour != null ? clothByHour.get(currentHour) : undefined;
 
   return (
@@ -55,8 +70,8 @@ function SliderWeather() {
       <h2 className="text-2xl sm:text-3xl mt-3 ">Hourly forecast</h2>
       <div className="slider-container p-2 sm:p-5 mt-2 mb-2 rounded-2xl ring-1 ring-black/30 bg-gray-200">
         <Slider {...settings}>
-          {(sortedWeatherData ?? []).map((data: any) => (
-            <CurrentDate key={data._id} data={data} />
+          {(sortedWeatherData ?? []).map((data: any, index: number) => (
+            <CurrentDate key={data.time || index} data={data} />
           ))}
         </Slider>
         <HourlyForecastCard data={currentWeather} />

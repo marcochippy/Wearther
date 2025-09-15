@@ -3,7 +3,8 @@ import { GoogleGenAI } from '@google/genai';
 import Clothing from '@/models/Clothing';
 import { aiPrompt } from '@/helpers/aiInstruction';
 import { ClothingItems, ApiResponse } from '@/../../types/clothing';
-import Hourly from '../models/Hourly';
+import Weather from '../models/Weather';
+import { WeatherRoot } from '../../../types/weather';
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
@@ -14,9 +15,22 @@ export const createClothing = async (req: Request, res: Response): Promise<void>
   // Error case definen (express checken)
 
   try {
-    const hourlyForecast = await Hourly.find();
+    const weatherForecast = await Weather.find();
+    // console.log(weatherForecast);
 
-    const message = JSON.stringify(hourlyForecast);
+    if (!weatherForecast.length) {
+      res.status(404).json({ error: 'No weather data found' });
+      return;
+    }
+
+    if (!weatherForecast[0]?.hourly?.data) {
+      res.status(400).json({ error: 'Weather data structure is invalid' });
+      return;
+    }
+
+    const hourlyData = weatherForecast[0].hourly.data.slice(0, 12);
+    const message = JSON.stringify(hourlyData);
+    // console.log(hourlyData);
 
     const chat = ai.chats.create({
       model,
@@ -37,7 +51,8 @@ export const createClothing = async (req: Request, res: Response): Promise<void>
 
     res.json({
       success: true,
-      message: 'Successfully created ClothingData'
+      message: 'Successfully created ClothingData',
+      data: polishedResponse
     });
     console.log('Successfully created ClothingData');
   } catch (error) {

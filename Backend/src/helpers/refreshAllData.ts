@@ -1,4 +1,4 @@
-import { postHourly } from '@/controllers/hourlyWeather';
+import { postWeather } from '@/controllers/weather';
 import { createClothing } from '@/controllers/clothing';
 
 function makeFakeRes(name: string) {
@@ -18,7 +18,7 @@ export async function refreshAllData() {
   try {
     console.log('Starting full data refresh');
 
-    await postHourly({} as any, makeFakeRes('postHourly') as any);
+    await postWeather({} as any, makeFakeRes('postHourly') as any);
     console.log('Weather data posted. Next AI clothing data');
 
     await sleep(5000);
