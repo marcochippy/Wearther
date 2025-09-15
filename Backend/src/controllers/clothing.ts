@@ -28,7 +28,7 @@ export const createClothing = async (req: Request, res: Response): Promise<void>
       return;
     }
 
-    const hourlyData = weatherForecast[0].hourly.data.slice(0, 12);
+    const hourlyData = weatherForecast[0].hourly.data.slice(0, 13);
     const message = JSON.stringify(hourlyData);
     // console.log(hourlyData);
 
@@ -40,7 +40,7 @@ export const createClothing = async (req: Request, res: Response): Promise<void>
     });
 
     console.log('Starting Gemini Prompt');
-
+    // console.log(message);
     const aiResponse: any = await chat.sendMessage({ message: [{ text: message }] });
     const clearedResponse: ApiResponse | any = aiResponse.text.replace('```json', '').replace('```', '').trim();
     const polishedResponse: ClothingItems = JSON.parse(clearedResponse);
