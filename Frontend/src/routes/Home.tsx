@@ -1,13 +1,13 @@
 import { getWeather, getClothing } from '@/utils/fetch';
 import SliderWeather from '@/components/Homepage/SliderWeather';
 import { useCallback, useEffect, useState } from 'react';
-import { ApiData } from '@/../../types/weather';
+import { WeatherRoot } from '@/../../types/weather';
 import { ClothingData } from '@/../../types/clothing';
 import Context, { SlideContextValue } from '@/utils/Context';
 import RainNotification from '@/components/Homepage/RainNotification';
 
 const Home = () => {
-  const [weatherData, setWeatherData] = useState<ApiData[] | null>(null);
+  const [weatherData, setWeatherData] = useState<WeatherRoot[] | null>(null);
   const [clothData, setClothData] = useState<ClothingData[] | null>(null);
   const [loading, setLoading] = useState(true);
 

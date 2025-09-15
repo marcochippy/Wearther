@@ -1,6 +1,6 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
 import { ClothingData } from '../../../types/clothing';
-import { ApiData } from '../../../types/hourly';
+import { WeatherRoot } from '../../../types/weather';
 
 export type SlideContextValue = {
   oldSlide: number;
@@ -12,7 +12,7 @@ export type SlideContextValue = {
   activeSlide2: number;
   setActiveSlide2: Dispatch<SetStateAction<number>>;
 
-  weatherData: ApiData[] | null;
+  weatherData: WeatherRoot[] | null;
 
   clothData: ClothingData[] | null;
   setClothData: Dispatch<SetStateAction<ClothingData[] | null>>;

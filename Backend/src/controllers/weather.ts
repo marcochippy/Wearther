@@ -127,7 +127,6 @@
 import axios from 'axios';
 import { Request, Response } from 'express';
 import Hourly from '@/models/Weather';
-import { ApiItems } from '@/../../types/weather';
 
 const pirateUrl = process.env.URL_PIRATE_WEATHER;
 const pirateKey = process.env.KEY_PIRATE_WEATHER;

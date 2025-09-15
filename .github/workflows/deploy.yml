@@ -62,11 +62,8 @@ jobs:
         run: |
           cat <<EOF > ./Backend/.env
           PORT=${{ secrets.PORT }}
-          KEY_WEATHERBIT=${{ secrets.KEY_WEATHERBIT }}
-          URL_WEATHERBIT=${{ secrets.URL_WEATHERBIT }}
-          ZIP_WEATHERBIT=${{ secrets.ZIP_WEATHERBIT }}
-          KEY_ACCUWEATHER=${{ secrets.KEY_ACCUWEATHER }}
-          URL_ACCUWEATHER=${{ secrets.URL_ACCUWEATHER }}
+          KEY_PIRATE_WEATHER=${{ secrets.KEY_PIRATE_WEATHER }}
+          URL_PIRATE_WEATHER=${{ secrets.URL_PIRATE_WEATHER }}
           MONGO_URI=${{ secrets.MONGO_URI }}
           GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
           SPA_ORIGIN=${{ secrets.SPA_ORIGIN }}
